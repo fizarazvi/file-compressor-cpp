@@ -1,4 +1,4 @@
-#include "HuffmanCoding.h"
+#include "../../include/huffman/HuffmanCoding.h"
 #include <queue>
 #include <vector>
 #include <fstream>
@@ -79,31 +79,4 @@ std::string HuffmanCoding::decode(HuffmanNode *root, const std::string &encodedS
         }
     }
     return decodedStr;
-}
-
-std::string HuffmanCoding::readFile(const std::string &filePath)
-{
-    std::ifstream file(filePath);
-    if (!file.is_open())
-    {
-        std::cerr << "Error: Could not open file" << filePath << std::endl;
-        return "";
-    }
-
-    std::string content((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>()));
-    file.close();
-    return content;
-}
-
-void HuffmanCoding::writeFile(const std::string &filePath, const std::string &data)
-{
-    std::ofstream file(filePath);
-    if (!file.is_open())
-    {
-        std::cerr << "Error: Could not write to the file" << filePath << std::endl;
-        return;
-    }
-
-    file << data;
-    file.close();
 }

@@ -1,4 +1,5 @@
-#include "HuffmanCoding.h"
+#include "../include/huffman/HuffmanCoding.h"
+#include "../include/utils/FileUtils.h"
 #include <iostream>
 #include <unordered_map>
 
@@ -15,7 +16,7 @@ int main(int argc, char *argv[])
 
     HuffmanCoding huffman;
 
-    std::string text = huffman.readFile(inputFilePath);
+    std::string text = FileUtils::readFile(inputFilePath);
 
     std::unordered_map<char, int> freqMap;
     for (char ch : text)
@@ -29,11 +30,11 @@ int main(int argc, char *argv[])
     huffman.generateHuffmanCodes(root, "", huffmanCode);
     std::string encodedText = huffman.encode(text, huffmanCode);
 
-    huffman.writeFile(encodedOutputFilePath, encodedText);
+    FileUtils::writeFile(encodedOutputFilePath, encodedText);
     std::cout << "File compressed and saved to: " << encodedOutputFilePath << std::endl;
 
     std::string decodedText = huffman.decode(root, encodedText);
-    huffman.writeFile(decodedOutputFilePath, decodedText);
+    FileUtils::writeFile(decodedOutputFilePath, decodedText);
     std::cout << "File decompressed and saved to: " << decodedOutputFilePath << std::endl;
 
     return 0;
